@@ -1,0 +1,14 @@
+!!! html 
+%head
+  %title "How long?"
+  %link{:rel => "stylesheet", :href => "demo.css", :type => "text/css", :media => "screen"}
+  %link{:rel => "stylesheet", :href => "demo-print.css", :type => "text/css", :media => "print"}
+  %script{:src => "raphael.js"}
+  %script{:src => "jquery.js"}
+  %script{:src => "pie.js"}
+%body
+  %h1.center
+    1_000_000.times { |n| n = n + 1 }
+  %table
+    = yield
+  #holder
