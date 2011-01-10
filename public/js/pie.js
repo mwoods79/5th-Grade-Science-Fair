@@ -47,11 +47,11 @@ Raphael.fn.pieChart = function (cx, cy, r, values, labels, stroke) {
     $(function () {
         var values = [],
             labels = [];
-        $("tr").each(function () {
-            values.push(parseInt($("td", this).text(), 10));
-            labels.push($("th", this).text());
+        $("tr.pie").each(function () {
+            values.push(parseInt($("td.pie", this).text(), 10));
+            labels.push($("th.pie", this).text());
         });
-        $("table").hide();
-        raphael("holder", 700, 700).pieChart(350, 350, 200, values, labels, "#fff");
+        $("table.pie").hide();
+        raphael("holder", 600, 600).pieChart(250, 250, 150, values, labels, "#ddd");
     });
 })(Raphael.ninja());

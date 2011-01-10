@@ -1,25 +1,42 @@
 require 'sinatra'
 require 'haml'
+require 'dm-core'
+require 'dm-migrations'
+require 'dm-aggregates'
+
+DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://#{Dir.pwd}/blog.db")
+
+class Operation
+  include DataMapper::Resource
+  property :id, Serial
+  property :time, Float
+  property :cps, Float
+  property :created_at, DateTime
+end
+
+Operation.auto_upgrade!
 
 get '/' do
+  @average_time = Operation.avg(:time)
+  @averate_cps = Operation.avg(:cps)
+  @last = Operation.last
+  @operations = Operation.all(:order => [:id.desc])
   haml :index
 end
 
-#start_time = Time.now
-#number = 1_000_000
+get '/run' do
+  this_run = Operation.create(one_million_times)
+  this_run.created_at = Time.now
+  this_run.save
+  redirect '/'
+end
 
-#number.times do |n|
-#  dont_matter = n + 1
-#end
-
-#end_time = Time.now
-
-#total_time = end_time - start_time
-
-#def calc_per_second(n,t)
-#  x = n*(1/t)
-#end
-
-#puts "Time: #{total_time}"
-#puts "Number per second: #{calc_per_second(number, total_time)}"
-
+def one_million_times
+  num = 1_000_000
+  start_time = Time.now
+  num.times { |n| n = n + 1 }
+  end_time = Time.now
+  time = end_time - start_time
+  cps = num/time
+  {:time => time, :cps => cps}
+end

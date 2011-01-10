@@ -1,14 +1,13 @@
 !!! html 
 %head
   %title "How long?"
-  %link{:rel => "stylesheet", :href => "demo.css", :type => "text/css", :media => "screen"}
-  %link{:rel => "stylesheet", :href => "demo-print.css", :type => "text/css", :media => "print"}
-  %script{:src => "raphael.js"}
-  %script{:src => "jquery.js"}
-  %script{:src => "pie.js"}
+  %link{:rel => "stylesheet", :href => "css/ui-lightness/jquery-ui-1.8.7.custom.css", :type => "text/css"}
+  %link{:rel => "stylesheet", :href => "css/demo.css", :type => "text/css", :media => "screen"}
+  %link{:rel => "stylesheet", :href => "css/demo-print.css", :type => "text/css", :media => "print"}
+  %script{:src => "js/raphael-1.5.2.min.js"}
+  %script{:src => "js/jquery-1.4.4.min.js"}
+  %script{:src => "js/jquery-ui-1.8.7.custom.min.js"}
+  %script{:src => "js/pie.js"}
+  %script{:src => "js/application.js"}
 %body
-  %h1.center
-    1_000_000.times { |n| n = n + 1 }
-  %table
-    = yield
-  #holder
+  = yield

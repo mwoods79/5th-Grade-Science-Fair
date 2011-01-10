@@ -1,10 +1,17 @@
-%tr
-  %th
-    One Second 
-  %td
-    98.5%
-%tr
-  %th
-    Time
-  %td
-    11.5%
+%h1 1_000_000.times { |n| n = n + 1 }
+
+%table.pie
+  %tr.pie
+    %th.pie
+      = ((1.00 - @last.time) * 100).round
+    %td.pie
+      = (1.00 - @last.time) * 100
+  %tr.pie
+    %th.pie
+      = (@last.time * 100).round
+    %td.pie
+      = @last.time * 100
+#holder
+%a{:href => '/run'}
+  Go!
+#running Running...
