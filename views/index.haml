@@ -1,17 +1,46 @@
+
+  
 %h1 1_000_000.times { |n| n = n + 1 }
 
 %table.pie
   %tr.pie
     %th.pie
-      = ((1.00 - @last.time) * 100).round
+      = ((1.00 - @last.time) * 100).round.to_s + "%"
     %td.pie
       = (1.00 - @last.time) * 100
   %tr.pie
     %th.pie
-      = (@last.time * 100).round
+      = (@last.time * 100).round.to_s + '%'
     %td.pie
       = @last.time * 100
+
 #holder
-%a{:href => '/run'}
-  Go!
+#button_container
+  %a{:href => '/run'}
+    Go!
 #running Running...
+#output
+  %table
+    %thead
+      %tr
+        %th AVG Time
+        %th AVG CPS
+    %tbody
+      %tr
+        %td= @average_time
+        %td= @averate_cps
+  %table
+    %thead
+      %tr
+        %th n
+        %th Time
+        %th CPS
+    %tbody
+      - @operations.each do |op|
+        %tr
+          %td
+            = op.id
+          %td
+            = op.time
+          %td
+            = op.cps.floor

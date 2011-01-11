@@ -17,10 +17,10 @@ end
 Operation.auto_upgrade!
 
 get '/' do
-  @average_time = Operation.avg(:time)
-  @averate_cps = Operation.avg(:cps)
+  @average_time = "%.9f" % Operation.avg(:time)
+  @averate_cps = Operation.avg(:cps).floor
   @last = Operation.last
-  @operations = Operation.all(:order => [:id.desc])
+  @operations = Operation.all(:limit => 25, :order => [:id.desc])
   haml :index
 end
 

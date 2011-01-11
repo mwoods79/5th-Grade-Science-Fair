@@ -52,6 +52,6 @@ Raphael.fn.pieChart = function (cx, cy, r, values, labels, stroke) {
             labels.push($("th.pie", this).text());
         });
         $("table.pie").hide();
-        raphael("holder", 600, 600).pieChart(250, 250, 150, values, labels, "#ddd");
+        raphael("holder", 500, 500).pieChart(250, 250, 150, values, labels, "#ddd");
     });
 })(Raphael.ninja());
